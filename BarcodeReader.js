@@ -15,21 +15,19 @@ BarcodeReader.prototype.onKeyUpHander = function( event ) {
     event.stopPropagation();
     return false;
   } else {
-    if( key == 13 ) {
+    if( !this.listenChars ) return true;
+
+    event.stopPropagation();
+
+    if( key == 13 ) { //ENTER
       this.listenChars = false;
       this.callback.call( this, this.chars.join('') );
       this.chars = [];
-      event.stopPropagation();
-      return false;
-    }
-
-    if( this.listenChars ) {
+    } else {
       this.chars.push( String.fromCharCode( key ) );
-      event.stopPropagation();
-      return false;
     }
 
-    return true;
+    return false;
   }
 };
 

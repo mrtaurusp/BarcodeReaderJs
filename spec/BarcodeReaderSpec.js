@@ -11,9 +11,8 @@ beforeEach(function() {
 });
 
 afterEach(function(){
-    this.sinon.restore();
+  this.sinon.restore();
 });
-
 
 describe('BarcodeReader', function () {
   it('should exists',function () {
@@ -85,6 +84,15 @@ describe('BarcodeReader', function () {
 
         spy.calledOnce.should.be.true;
         spy.calledWith('12345').should.be.true;
+      });
+
+      it('should not capture enter when no prefix was given',function () {
+        var spy = this.sinon.spy(),
+            barcode = new BarcodeReader('~', spy);
+
+        barcode.onKeyUpHander.call( barcode, makeEvent( 13 ) );
+
+        spy.calledOnce.should.be.false; 
       });
     });
   });
