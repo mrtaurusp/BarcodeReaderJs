@@ -1,11 +1,11 @@
 {
   "name": "BarcodeReaderJs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/soneta/BarcodeReaderJs",
   "authors": [
     "Mateusz Wolsza <mateusz.wolsza@enova.pl>"
   ],
-  "description": "Simple helper for barcode scanners. Very useful for POS applications.",
+  "description": "Simple helper for usage of barcode scanner in javascipt. Very useful for POS applications. Written in pure js.",
   "main": "BarcodeReader.js",
   "keywords": [
     "barcode",

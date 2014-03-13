@@ -4,6 +4,7 @@ var should = require('should'),
 
 global.document = {
   addEventListener : function() { },
+  removeEventListener: function() { }
 };
 
 beforeEach(function() {
@@ -25,11 +26,24 @@ describe('BarcodeReader', function () {
     });
   });
 
-  describe('event listeners',function () {
-    it('should add global keydown event handler',function () {
+  describe('event listeners', function () {
+    it('should add global keydown event handler', function () {
       var spy = this.sinon.spy(document, 'addEventListener');
 
-      new BarcodeReader('~', this.sinon.spy());
+      var barcode = new BarcodeReader('~', this.sinon.spy());
+
+      spy.calledOnce.should.be.true;
+      var args = spy.args[0];
+      args.length.should.equal(3);
+      args[0].should.equal('keydown');
+      args[2].should.be.true;
+    });
+    
+    it('should remove global keydown handler', function() {
+      var spy = this.sinon.spy(document, 'removeEventListener'),
+          barcode = new BarcodeReader('~', this.sinon.spy());
+
+      barcode.remove();
 
       spy.calledOnce.should.be.true;
       var args = spy.args[0];
@@ -103,5 +117,6 @@ describe('BarcodeReader', function () {
         spy.called.should.be.false; 
       });
     });
+
   });
 });

@@ -3,8 +3,9 @@ function BarcodeReader( prefix, callback ) {
   this.callback = callback;
   this.chars = [];
   this.listenChars = false;
+  this.handler = this.onKeyDownHander.bind(this);
 
-  document.addEventListener('keydown', this.onKeyDownHander.bind(this), true);
+  document.addEventListener('keydown', this.handler, true);
 }
 
 BarcodeReader.prototype.onKeyDownHander = function( event ) {
@@ -31,6 +32,10 @@ BarcodeReader.prototype.onKeyDownHander = function( event ) {
 
     return false;
   }
+};
+
+BarcodeReader.prototype.remove = function( event ) {
+  document.removeEventListener( 'keydown', this.handler, true );
 };
 
 if( typeof module !== 'undefined' ) {
