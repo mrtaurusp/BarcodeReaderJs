@@ -4,10 +4,10 @@ function BarcodeReader( prefix, callback ) {
   this.chars = [];
   this.listenChars = false;
 
-  document.addEventListener('keyup', this.onKeyUpHander.bind(this), true);
+  document.addEventListener('keydown', this.onKeyDownHander.bind(this), true);
 }
 
-BarcodeReader.prototype.onKeyUpHander = function( event ) {
+BarcodeReader.prototype.onKeyDownHander = function( event ) {
   var key = event.which;
 
   if( key === this.prefix ) {

@@ -34,7 +34,7 @@ describe('BarcodeReader', function () {
       spy.calledOnce.should.be.true;
       var args = spy.args[0];
       args.length.should.equal(3);
-      args[0].should.equal('keyup');
+      args[0].should.equal('keydown');
       args[2].should.be.true;
     });
 
@@ -56,7 +56,7 @@ describe('BarcodeReader', function () {
         var event = { which: 66 },
             barcode = new BarcodeReader('~', this.sinon.spy());
 
-        var result = barcode.onKeyUpHander.call( barcode, event );
+        var result = barcode.onKeyDownHander.call( barcode, event );
 
         result.should.be.true;
       });
@@ -66,7 +66,7 @@ describe('BarcodeReader', function () {
             event = makeEvent( 126 ),
             barcode = new BarcodeReader('~', spy);
 
-        var result = barcode.onKeyUpHander.call( barcode, event );
+        var result = barcode.onKeyDownHander.call( barcode, event );
 
         result.should.be.false;
         event.isPropagationStopped().should.be.true;
@@ -77,10 +77,10 @@ describe('BarcodeReader', function () {
             barcode = new BarcodeReader('~', spy);
 
         Array.prototype.forEach.call( '~12345', function( c ) {
-          barcode.onKeyUpHander.call( barcode, makeEvent( c.charCodeAt(0) ) );
+          barcode.onKeyDownHander.call( barcode, makeEvent( c.charCodeAt(0) ) );
         } );
 
-        barcode.onKeyUpHander.call( barcode, makeEvent( 13 ) );
+        barcode.onKeyDownHander.call( barcode, makeEvent( 13 ) );
 
         spy.calledOnce.should.be.true;
         spy.calledWith('12345').should.be.true;
@@ -90,9 +90,9 @@ describe('BarcodeReader', function () {
         var spy = this.sinon.spy(),
             barcode = new BarcodeReader('~', spy);
 
-        barcode.onKeyUpHander.call( barcode, makeEvent( 13 ) );
+        barcode.onKeyDownHander.call( barcode, makeEvent( 13 ) );
 
-        spy.calledOnce.should.be.false; 
+        spy.called.should.be.false; 
       });
     });
   });
