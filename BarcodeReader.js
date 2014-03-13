@@ -31,6 +31,6 @@ BarcodeReader.prototype.onKeyDownHander = function( event ) {
   }
 };
 
-if( module ) {
+if( typeof module !== 'undefined' ) {
   module.exports = BarcodeReader;
 }
