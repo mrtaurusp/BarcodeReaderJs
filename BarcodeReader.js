@@ -12,11 +12,13 @@ BarcodeReader.prototype.onKeyDownHander = function( event ) {
 
   if( key === this.prefix ) {
     this.listenChars = true;
+    event.preventDefault();
     event.stopPropagation();
     return false;
   } else {
     if( !this.listenChars ) return true;
 
+    event.preventDefault();
     event.stopPropagation();
 
     if( key == 13 ) { //ENTER

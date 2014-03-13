@@ -42,13 +42,20 @@ describe('BarcodeReader', function () {
       var makeEvent = function( which ) {
         return {
                   stopped: false,
+                  prevented: false,
                   which: which,
                   stopPropagation: function() {
                     this.stopped = true;
                   },
                   isPropagationStopped: function() {
                     return this.stopped;
-                  }
+                  },
+                  preventDefault: function () {
+                    this.prevented = true;
+                  },
+                  isDefaultPrevented: function() {
+                    return this.prevented;
+                  },
                 };
       };
 
@@ -70,6 +77,7 @@ describe('BarcodeReader', function () {
 
         result.should.be.false;
         event.isPropagationStopped().should.be.true;
+        event.isDefaultPrevented().should.be.true;
       });
 
       it('should read keys until enter has been passed and run callback',function () {
