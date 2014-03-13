@@ -7,7 +7,7 @@ Simple javascript code that helps with barcode scanners.
 
     bower install BarcodeReaderJs
 
-or simple include **BarcodeReader.js** in your page.
+or simply include **BarcodeReader.js** in your page.
 
 ## Usage ##
 
@@ -18,6 +18,8 @@ Usage is super simple:
     											   } );
 
 Prefix is one-character lenght string, usually **'~'** or **'`'**.
+
+That call adds global **keydown** handler with **useCapture** property so handler is called with the highest priority.
 
 If you want to remove listener, just use method  
 
