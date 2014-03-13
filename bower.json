@@ -1,0 +1,23 @@
+{
+  "name": "BarcodeReaderJs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/soneta/BarcodeReaderJs",
+  "authors": [
+    "Mateusz Wolsza <mateusz.wolsza@enova.pl>"
+  ],
+  "description": "Simple helper for barcode scanners. Very useful for POS applications.",
+  "main": "BarcodeReader.js",
+  "keywords": [
+    "barcode",
+    "pos",
+    "sale",
+    "scanner"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec"
+  ]
+}
