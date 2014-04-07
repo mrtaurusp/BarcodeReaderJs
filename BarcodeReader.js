@@ -1,4 +1,6 @@
 (function (root, factory) {
+  'use strict';
+
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define([], factory);
@@ -37,7 +39,7 @@ BarcodeReader.prototype.onKeyDownHander = function( event ) {
     event.preventDefault();
     event.stopPropagation();
 
-    if( key == 13 ) { //ENTER
+    if( key === 13 ) { //ENTER
       this.listenChars = false;
       this.callback.call( this, this.chars.join('') );
       this.chars = [];
