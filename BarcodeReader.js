@@ -1,3 +1,18 @@
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals (root is window)
+    root.BarcodeReader = factory();
+  }
+}(this, function() {
+
 function BarcodeReader( prefix, callback ) {
   this.prefix = prefix.charCodeAt(0);
   this.callback = callback;
@@ -38,6 +53,5 @@ BarcodeReader.prototype.remove = function( event ) {
   document.removeEventListener( 'keydown', this.handler, true );
 };
 
-if( typeof module !== 'undefined' ) {
-  module.exports = BarcodeReader;
-}
+return BarcodeReader;
+}));
